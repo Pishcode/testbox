@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromApp from '../shared/store/app.reducer';
 import * as fromAuth from '../shared/store/auth.reducer';
+import {map} from 'rxjs/internal/operators';
 
 @Component({
     selector: 'app-side-nav',
@@ -12,18 +13,18 @@ import * as fromAuth from '../shared/store/auth.reducer';
     styleUrls: ['./side-nav.component.sass']
 })
 export class SideNavComponent implements OnInit {
-    authState: Observable<fromAuth.State>;
-
-    isLoggedIn: Observable<boolean>;
+    isAuthenticated: Observable<boolean>;
     constructor(
         private authService: AuthService,
         private store: Store<fromApp.AppState>
     ) { }
 
     ngOnInit() {
-        this.isLoggedIn = this.authService.isLoggedIn();
-
-        this.authState = this.store.select('auth');
+        this.isAuthenticated = this.store.select('auth').pipe(
+            map((authState: fromAuth.State) => {
+                return authState.authenticated;
+            })
+        );
     }
 
     logout() {

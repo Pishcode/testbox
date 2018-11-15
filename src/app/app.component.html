@@ -1,12 +1,6 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav mode="side" [(opened)]="navOpened">
-        <div class="side-nav">
-            <h2>Sidenav content</h2>
-            <div class="user-panel">
-                <button mat-raised-button color="primary" routerLink="/login">Login</button>
-                <button mat-stroked-button color="accent"  routerLink="/register">Register</button>
-            </div>
-        </div>
+        <app-side-nav></app-side-nav>
     </mat-sidenav>
 
     <mat-sidenav-content>
@@ -16,10 +10,16 @@
                     <mat-icon *ngIf="!navOpened">menu</mat-icon>
                     <mat-icon *ngIf="navOpened">close</mat-icon>
                 </button>
-                <mat-icon>keyboard</mat-icon><h1>Pishcode</h1>
+                <nav>
+                    <a routerLink="/">
+                        <h1>
+                            <mat-icon>keyboard</mat-icon>
+                            {{title}}
+                        </h1>
+                    </a>
+                </nav>
                 <span class="example-spacer"></span>
                 <nav>
-                    <a routerLink="/">Home</a>
                     <a routerLink="/books">Books</a>
                 </nav>
             </mat-toolbar-row>

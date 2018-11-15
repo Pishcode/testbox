@@ -1,3 +1,29 @@
-<p>
-  register works!
-</p>
+<mat-card class="form">
+  <mat-card-title>Create Account</mat-card-title>
+  <mat-card-content>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="field-full">
+        <input
+          matInput
+          placeholder="Email"
+          name="email"
+          formControlName="email"
+          required>
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="field-full">
+        <input matInput
+               placeholder="Password"
+               formControlName="password"
+               name="password"
+               [type]="hide ? 'password' : 'text'"
+               required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Create account</button>
+    </form>
+  </mat-card-content>
+</mat-card>

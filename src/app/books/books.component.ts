@@ -14,7 +14,7 @@ export class BooksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.books = this.db.list('/books').valueChanges();
+    this.books = this.db.list('books').valueChanges();
   }
 
 }

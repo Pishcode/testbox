@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  navOpened: boolean;
-  title = 'pishcode';
+  navOpened = true;
+  isLoggedIn: boolean;
+  title = 'Pishcode';
 }

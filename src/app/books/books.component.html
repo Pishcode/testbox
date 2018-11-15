@@ -1,6 +1,6 @@
 <h2>Top 100 books</h2>
 
-<mat-expansion-panel *ngFor="let book of books | async">
+<mat-expansion-panel *ngFor="let book of books | async; index as i">
     <mat-expansion-panel-header>
         <h3>
             {{book.title}}
@@ -10,6 +10,6 @@
 
     <div>{{book.country}}</div>
     <mat-action-row>
-        <button mat-button>Edit book</button>
+        <button mat-button [routerLink]="['/book/' + i]">Edit book</button>
     </mat-action-row>
 </mat-expansion-panel>

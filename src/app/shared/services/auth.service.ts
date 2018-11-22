@@ -25,6 +25,7 @@ export class AuthService {
             user => {
                 this.store.dispatch(new AuthActions.Login());
                 console.log('Success login', user);
+                this.router.navigate(['/']);
             }
         ).catch(err => console.log('Error login', err.message));
     }
@@ -42,7 +43,6 @@ export class AuthService {
         this.firebaseAuth.auth.signOut().then(
             res => {
                 this.store.dispatch(new AuthActions.Logout());
-
             }
         );
     }

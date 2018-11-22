@@ -21,7 +21,6 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
-import { BookComponent } from './books/book/book.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -32,17 +31,19 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { AuthGuardService } from './shared/services/auth.guard.service';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './shared/store/app.reducer';
+import { BookDetailComponent } from './books/book-detail/book-detail.component';
+import {BookService} from './shared/services/book.service';
 
 @NgModule({
     declarations: [
         AppComponent,
         BooksComponent,
         HomeComponent,
-        BookComponent,
         LoginComponent,
         RegisterComponent,
         UserComponent,
-        SideNavComponent
+        SideNavComponent,
+        BookDetailComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -63,7 +64,11 @@ import { reducers } from './shared/store/app.reducer';
         MatExpansionModule,
         MatListModule
     ],
-    providers: [AuthService, AuthGuardService],
+    providers: [
+        AuthService,
+        AuthGuardService,
+        BookService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

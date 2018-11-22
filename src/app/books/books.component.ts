@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import {BookService} from '../shared/services/book.service';
 
 @Component({
   selector: 'app-books',
@@ -10,11 +11,13 @@ import { Observable } from 'rxjs';
 export class BooksComponent implements OnInit {
   books: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(
+      private bookService: BookService
+  ) {
   }
 
   ngOnInit() {
-    this.books = this.db.list('books').valueChanges();
+    this.books = this.bookService.getBooks();
   }
 
 }

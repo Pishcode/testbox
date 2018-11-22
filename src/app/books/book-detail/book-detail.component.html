@@ -1,0 +1,25 @@
+
+<mat-card>
+  <mat-card-title>
+    {{(book | async)?.title}}
+  </mat-card-title>
+  <mat-card-subtitle>{{(book | async)?.author}}</mat-card-subtitle>
+  <mat-card-content>
+    Country: {{(book | async)?.country}} <br/>
+    Language: {{(book | async)?.language}} <br/>
+    Published: {{(book | async)?.year}} <br/>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin placerat risus, et tempus lectus pulvinar in.
+      Sed hendrerit interdum arcu, tristique sollicitudin enim molestie non. Mauris suscipit et risus pellentesque tempus.
+      Fusce dapibus elit ac maximus gravida. Donec dictum, nunc et congue cursus, ex urna lacinia dui, in auctor nulla nibh nec mauris.
+      Aenean facilisis dictum mattis. Donec eu odio egestas, varius arcu non, semper massa.
+    </p>
+    <br/><br/>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button routerLink="/books">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <a mat-raised-button color="primary" [href]="(book | async)?.link" target="_blank">Go to</a>
+  </mat-card-actions>
+</mat-card>

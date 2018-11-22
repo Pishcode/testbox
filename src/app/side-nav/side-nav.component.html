@@ -2,9 +2,12 @@
   <h2>Sidenav content</h2>
   <div class="user-panel" *ngIf="!(isAuthenticated | async)">
     <button mat-raised-button color="primary" routerLink="/login">Login</button>
-    <button mat-stroked-button color="accent"  routerLink="/register">Register</button>
+    <button mat-stroked-button color="accent" routerLink="/register">Register</button>
+    <mat-divider></mat-divider>
+    <button mat-stroked-button color="accent" routerLink="/books/add">Add books</button>
   </div>
   <div class="user-panel" *ngIf="(isAuthenticated | async)">
-    <button mat-raised-button color="primary" (click)="logout()">Log out</button>
+    <button mat-raised-button color="accent" routerLink="/books/add">Add books</button>
+    <button mat-stroked-button color="primary" (click)="logout()">Log out</button>
   </div>
 </div>

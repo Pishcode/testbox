@@ -13,3 +13,17 @@
         <button mat-button [routerLink]="['/book/' + i]">Book detail</button>
     </mat-action-row>
 </mat-expansion-panel>
+
+<mat-expansion-panel *ngFor="let book of booksCollection | async; index as i">
+    <mat-expansion-panel-header>
+        <h3>
+            {{book.title}}
+        </h3>
+    </mat-expansion-panel-header>
+    <span>{{book.author}}</span>
+
+    <div>{{book.country}}</div>
+    <mat-action-row>
+        <button mat-button [routerLink]="['/book', book.id]">Book detail</button>
+    </mat-action-row>
+</mat-expansion-panel>

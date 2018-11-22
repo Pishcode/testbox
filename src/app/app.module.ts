@@ -32,7 +32,9 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './shared/store/app.reducer';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
-import {BookService} from './shared/services/book.service';
+import { BookService } from './shared/services/book.service';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AddBookComponent } from './books/add-book/add-book.component';
 
 @NgModule({
     declarations: [
@@ -43,13 +45,15 @@ import {BookService} from './shared/services/book.service';
         RegisterComponent,
         UserComponent,
         SideNavComponent,
-        BookDetailComponent
+        BookDetailComponent,
+        AddBookComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
         StoreModule.forRoot(reducers),
         BrowserModule,
         AppRoutingModule,
+        AngularFirestoreModule,
         AngularFireDatabaseModule,
         AngularFireAuthModule,
         ReactiveFormsModule,

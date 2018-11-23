@@ -43,7 +43,7 @@ export class BookService {
         this.booksCollection.add(book);
     }
 
-    updateBook(id, book) {
+    updateBook(id: string, book: Book) {
         this.bookDoc = this.af.doc<Book>(`books/${id}`);
         this.bookDoc.update(book);
     }

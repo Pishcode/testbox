@@ -6,14 +6,19 @@ import {
 } from '@angular/forms';
 import {Book} from '../../shared/models/book.model';
 import {BookService} from '../../shared/services/book.service';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Observable} from 'rxjs';
+import {filter, map, tap} from 'rxjs/internal/operators';
 
 @Component({
-    selector: 'app-add-book',
-    templateUrl: './add-book.component.html',
-    styleUrls: ['./add-book.component.sass']
+    selector: 'app-edit-book',
+    templateUrl: './edit-book.component.html',
+    styleUrls: ['./edit-book.component.sass']
 })
-export class AddBookComponent implements OnInit {
+export class EditBookComponent implements OnInit {
 
+    bookId: string;
+    book$: Observable<Book>;
     form: FormGroup;
     formData: Book = <Book>{
         author: '',
@@ -27,10 +32,33 @@ export class AddBookComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private bookService: BookService
+        private bookService: BookService,
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
+        this.route.params.subscribe(
+            (params: Params) => {
+                this.bookId = params['id'];
+                this.book$ = this.bookService.getBook(this.bookId);
+            }
+        );
+
+        this.book$.pipe(
+            filter(x => !!x),
+            tap((book: Book) => {
+                this.form.setValue({
+                    author: book.author,
+                    country: book.country,
+                    description: book.description,
+                    image: book.image,
+                    language: book.language,
+                    title: book.title,
+                    published: book.published
+                });
+            })
+        ).subscribe();
+
         this.form = this.fb.group({
             'author': [this.formData.author, Validators.required],
             'country': [this.formData.country],
@@ -57,6 +85,6 @@ export class AddBookComponent implements OnInit {
 
 
     onSubmit() {
-        this.bookService.addBook(this.formData);
+        this.bookService.updateBook(this.bookId, this.formData);
     }
 }

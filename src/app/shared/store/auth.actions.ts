@@ -20,7 +20,7 @@ export class Logout implements Action {
 export class SetToken implements Action {
     readonly type = SET_TOKEN;
 
-    constructor(public payload: string) {}
+    constructor(public payload: { token: string }) {}
 }
 
-export type AuthActions = Register | Login |Logout | SetToken;
+export type AuthActions = Register | Login | Logout | SetToken;

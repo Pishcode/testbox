@@ -1,3 +1,4 @@
-<p>
-  home works!
+<h1>Header</h1>
+<p *ngIf="user$ | async">
+  Hi {{(user$ | async)?.name}}
 </p>

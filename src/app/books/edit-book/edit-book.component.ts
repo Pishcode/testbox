@@ -27,7 +27,7 @@ export class EditBookComponent implements OnInit {
         image: '',
         language: '',
         title: '',
-        published: '',
+        published: 0,
     };
 
     constructor(

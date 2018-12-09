@@ -13,7 +13,7 @@ const routes: Routes =  [
     { path: '', component: HomeComponent },
     { path: 'books', component: BooksComponent },
     { path: 'books/add', component: AddBookComponent, canActivate: [AuthGuardService] },
-    { path: 'book/:id', component: BookDetailComponent, canActivate: [AuthGuardService] },
+    { path: 'book/:id', component: BookDetailComponent },
     { path: 'book/edit/:id', component: EditBookComponent, canActivate: [AuthGuardService] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent }

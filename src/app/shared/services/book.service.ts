@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Book } from '../models/book.model';
-import { map } from 'rxjs/internal/operators';
+import { filter, map } from 'rxjs/internal/operators';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class BookService {
-    private books: Observable;
+    private books: Observable<any[]>;
     private booksCollection: AngularFirestoreCollection<Book>;
     private bookDoc: AngularFirestoreDocument<Book>;
 
@@ -21,6 +21,7 @@ export class BookService {
 
     getBooks() {
         return this.booksCollection.snapshotChanges().pipe(
+            filter(x => !!x),
             map(
                 actions => {
                     return actions.map(

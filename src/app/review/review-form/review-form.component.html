@@ -1,0 +1,24 @@
+<p>
+    Share your review:
+</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="review-form">
+    <div class="rating">
+        <ng-container *ngFor="let num of [5, 4, 3, 2, 1]">
+            <input type="radio"
+                   (click)="starHandler(num)"
+                   [id]="'star-' + num"
+                   [value]="num"
+                   formControlName="stars"
+                   name="stars">
+            <label [for]="'star-' + num" class="">
+                <i class="fas fa-star"></i>
+            </label>
+        </ng-container>
+    </div>
+    <textarea matInput
+        id="review-text"
+        formControlName="review"
+        name="review"></textarea>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Post review</button>
+</form>

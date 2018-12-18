@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
     Validators
 } from '@angular/forms';
-import {Book} from '../../shared/models/book.model';
-import {BookService} from '../../shared/services/book.service';
-import {ActivatedRoute, Params} from '@angular/router';
-import {Observable} from 'rxjs';
-import {filter, map, tap} from 'rxjs/internal/operators';
+import { Book } from '../../shared/models/book.model';
+import { BookService } from '../../shared/services/book.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, tap } from 'rxjs/internal/operators';
 
 @Component({
     selector: 'app-edit-book',

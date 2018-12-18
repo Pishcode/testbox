@@ -36,6 +36,8 @@ import { BookService } from './shared/services/book.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AddBookComponent } from './books/add-book/add-book.component';
 import { EditBookComponent } from './books/edit-book/edit-book.component';
+import { ReviewFormComponent } from './review/review-form/review-form.component';
+import { ReviewService } from './shared/services/review.service';
 
 @NgModule({
     declarations: [
@@ -48,7 +50,8 @@ import { EditBookComponent } from './books/edit-book/edit-book.component';
         SideNavComponent,
         BookDetailComponent,
         AddBookComponent,
-        EditBookComponent
+        EditBookComponent,
+        ReviewFormComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -73,6 +76,7 @@ import { EditBookComponent } from './books/edit-book/edit-book.component';
     providers: [
         AuthService,
         AuthGuardService,
+        ReviewService,
         BookService
     ],
     bootstrap: [AppComponent]

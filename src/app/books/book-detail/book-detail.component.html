@@ -1,26 +1,44 @@
-<mat-card class="book-detail">
+<mat-card class="book-detail" *ngIf="book$ | async as book">
   <mat-card-title>
-    {{(book | async)?.title}}
+    {{(book$ | async)?.title}}
   </mat-card-title>
-  <mat-card-subtitle>{{(book | async)?.author}}</mat-card-subtitle>
+  <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
   <mat-card-content>
     <div class="book-cover">
-      <img [src]="(book | async)?.image" [alt]="(book | async)?.title">
+      <img [src]="book.image" [alt]="book.title">
     </div>
     <div class="book-info">
-      Country: {{(book | async)?.country}} <br/>
-      Language: {{(book | async)?.language}} <br/>
-      Published: {{(book | async)?.year}} <br/>
+      Country: {{book.country}} <br/>
+      Language: {{book.language}} <br/>
+      Published: {{book.year}} <br/>
     </div>
     <mat-divider></mat-divider>
     <p>
-      {{(book | async)?.description}}
+      {{book.description}}
     </p>
+    <mat-divider></mat-divider>
+    <div *ngIf="averageRating$ | async as averageRating; else noReview">
+      Average Stars: {{averageRating | number:'1.0-2'}}
+    </div>
+    <ng-template #noReview>
+      <div>No reviews</div>
+    </ng-template>
+    <div class="reviews">
+      <div *ngFor="let review of reviews$ | async" class="review">
+        {{review.userId}} gave {{review.bookId}} {{review.stars}} stars
+        <p>
+          {{review.review}}
+        </p>
+      </div>
+    </div>
+    <div *ngIf="(isAuthenticated$ | async) && !(hasUserBookReview$ | async)">
+      <app-review-form [bookId]="bookId"></app-review-form>
+    </div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-flat-button routerLink="/books">
       <mat-icon>chevron_left</mat-icon>
     </button>
-    <a mat-raised-button color="primary" [href]="(book | async)?.link" target="_blank">Go to</a>
+    <a mat-raised-button color="primary" [href]="book.link" target="_blank">Go to</a>
   </mat-card-actions>
 </mat-card>

@@ -1,0 +1,37 @@
+.review-form
+  width: 220px
+
+  textarea
+    display: block
+    margin-bottom: 1em
+
+  .rating
+    display: block
+    float: left
+
+    & > input
+      display: none
+
+    & > label
+      margin: 5px
+      font-size: 1.25em
+      font-family: FontAwesome
+      display: inline-block
+      content: "\f005"
+      color: #a3a3a3
+      float: right
+
+      i
+        font-style: normal
+
+
+  .rating > input:checked ~ label,
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label
+    color: #FFD700
+
+  .rating > input:checked + label:hover,
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label,
+  .rating > input:checked ~ label:hover ~ label
+    color: #FFD700

@@ -13,10 +13,10 @@ export class BookService {
 
     constructor(
         private db: AngularFireDatabase,
-        private af: AngularFirestore
+        private firestore: AngularFirestore
     ) {
-        this.booksCollection = af.collection('books');
-        this.books = af.collection('books').valueChanges();
+        this.booksCollection = firestore.collection('books');
+        this.books = firestore.collection('books').valueChanges();
     }
 
     getBooks() {
@@ -37,7 +37,7 @@ export class BookService {
     }
 
     getBook(id: string) {
-        return this.af.doc<Book>(`books/${id}`).valueChanges();
+        return this.firestore.doc<Book>(`books/${id}`).valueChanges();
     }
 
     addBook(book: Book) {
@@ -45,7 +45,7 @@ export class BookService {
     }
 
     updateBook(id: string, book: Book) {
-        this.bookDoc = this.af.doc<Book>(`books/${id}`);
+        this.bookDoc = this.firestore.doc<Book>(`books/${id}`);
         this.bookDoc.update(book);
     }
 }

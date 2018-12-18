@@ -14,6 +14,7 @@ import { User, UserLoginData } from '../models/user.model';
 @Injectable()
 export class AuthService {
     user: Observable<User | null>;
+    userId: string;
 
     constructor(
         private firestore: AngularFirestore,
@@ -30,6 +31,7 @@ export class AuthService {
                 user => {
                     if (user) {
                         this.store.dispatch(new AuthActions.Login());
+                        this.userId = user.uid;
                         return this.getUser(user.uid);
                     }
 

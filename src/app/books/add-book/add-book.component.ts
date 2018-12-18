@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
     Validators
 } from '@angular/forms';
-import {Book} from '../../shared/models/book.model';
-import {BookService} from '../../shared/services/book.service';
+import { Book } from '../../shared/models/book.model';
+import { BookService } from '../../shared/services/book.service';
 
 @Component({
     selector: 'app-add-book',

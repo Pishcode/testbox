@@ -13,12 +13,11 @@ import { Subscription } from 'rxjs';
 
 @Injectable()
 export class AuthGuardService {
-
     authenticated$: Subscription;
+
     constructor(
         private router: Router,
         private store: Store<fromApp.AppState>
-
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

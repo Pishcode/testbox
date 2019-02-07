@@ -7,7 +7,7 @@ import {
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs/operators';
 
-import * as fromAuth from '../store/auth.reducer';
+import * as fromAuth from '../store/auth/auth.reducer';
 import * as fromApp from '../store/app.reducer';
 import { Subscription } from 'rxjs';
 

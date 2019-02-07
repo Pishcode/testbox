@@ -9,7 +9,7 @@ import { map, tap } from 'rxjs/operators';
 import { AuthService } from '../../shared/services/auth.service';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../shared/store/app.reducer';
-import * as fromAuth from '../../shared/store/auth.reducer';
+import * as fromAuth from '../../shared/store/auth/auth.reducer';
 
 @Component({
     selector: 'app-book-detail',

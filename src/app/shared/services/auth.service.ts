@@ -7,8 +7,8 @@ import { Store } from '@ngrx/store';
 import { switchMap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import * as fromApp from '../store/auth.reducer';
-import * as AuthActions from '../store/auth.actions';
+import * as fromApp from '../store/auth/auth.reducer';
+import * as AuthActions from '../store/auth/auth.actions';
 import { User, UserLoginData } from '../models/user.model';
 
 @Injectable()
@@ -52,30 +52,6 @@ export class AuthService {
             }
         );
     }
-
-    login(data: UserLoginData) {
-        this.firebaseAuth.auth.signInWithEmailAndPassword(data.email, data.password).then(
-            user => {
-                this.store.dispatch(new AuthActions.Login());
-                console.log('Success login', user);
-                this.router.navigate(['/']);
-
-                this.storeToken();
-            }
-        ).catch(err => console.log('Error login', err.message));
-    }
-
-    registerUser(data: UserLoginData) {
-        this.firebaseAuth.auth.createUserWithEmailAndPassword(data.email, data.password).then(
-            user => {
-                this.store.dispatch(new AuthActions.Register());
-                console.log('Success register', user);
-                this.router.navigate(['/']);
-                this.storeToken();
-            }
-        ).catch(err => console.log('Error register', err.message));
-    }
-
     logout() {
         this.firebaseAuth.auth.signOut().then(
             res => {

@@ -38,6 +38,8 @@ import { AddBookComponent } from './books/add-book/add-book.component';
 import { EditBookComponent } from './books/edit-book/edit-book.component';
 import { ReviewFormComponent } from './review/review-form/review-form.component';
 import { ReviewService } from './shared/services/review.service';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './shared/store/auth/auth.effects';
 
 @NgModule({
     declarations: [
@@ -56,6 +58,7 @@ import { ReviewService } from './shared/services/review.service';
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
         StoreModule.forRoot(reducers),
+        EffectsModule.forRoot([AuthEffects]),
         BrowserModule,
         AppRoutingModule,
         AngularFirestoreModule,

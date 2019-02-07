@@ -5,6 +5,16 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field class="field-full">
         <input
+                matInput
+                placeholder="Name"
+                name="name"
+                formControlName="name"
+                required>
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="field-full">
+        <input
           matInput
           placeholder="Email"
           name="email"

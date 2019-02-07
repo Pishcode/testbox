@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as fromApp from '../shared/store/app.reducer';
-import * as fromAuth from '../shared/store/auth.reducer';
+import * as fromAuth from '../shared/store/auth/auth.reducer';
 import { map } from 'rxjs/internal/operators';
 
 @Component({

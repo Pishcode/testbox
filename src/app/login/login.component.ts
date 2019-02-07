@@ -5,8 +5,11 @@ import {
     FormGroup,
     Validators
 } from '@angular/forms';
-import { AuthService } from '../shared/services/auth.service';
+import { Store } from '@ngrx/store';
+
 import { UserLoginData } from '../shared/models/user.model';
+import * as  fromApp from '../shared/store/app.reducer';
+import * as  AuthActions from '../shared/store/auth/auth.actions';
 
 @Component({
     selector: 'app-login',
@@ -23,7 +26,7 @@ export class LoginComponent implements OnInit {
     email = new FormControl(this.formData.email, Validators.required);
 
     constructor(
-        private authService: AuthService,
+        private store: Store<fromApp.AppState>,
         private fb: FormBuilder
     ) { }
 
@@ -42,7 +45,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-        this.authService.login(this.formData);
+        this.store.dispatch(new AuthActions.TryLogin(this.formData));
     }
 
 }

@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
+import { Store } from '@ngrx/store';
 import {
     FormBuilder,
     FormControl,
     FormGroup,
     Validators
 } from '@angular/forms';
-import { UserLoginData } from '../shared/models/user.model';
+
+import { UserRegisterData } from '../shared/models/user.model';
+import * as  fromApp from '../shared/store/app.reducer';
+import * as  AuthActions from '../shared/store/auth/auth.actions';
 
 @Component({
     selector: 'app-register',
@@ -16,26 +19,29 @@ import { UserLoginData } from '../shared/models/user.model';
 export class RegisterComponent implements OnInit {
     hide = true;
     form: FormGroup;
-    formData: UserLoginData = {
+    formData: UserRegisterData = {
+        name: '',
         email: '',
         password: ''
     };
     email = new FormControl(this.formData.email, Validators.required);
 
     constructor(
-        private authService: AuthService,
+        private store: Store<fromApp.AppState>,
         private fb: FormBuilder
     ) {
     }
 
     ngOnInit() {
         this.form = this.fb.group({
+            'name': this.formData.name,
             'email': this.email,
             'password': [this.formData.password, Validators.required]
         });
 
         this.form.valueChanges.subscribe(
             data => {
+                this.formData.name = data.name;
                 this.formData.email = data.email;
                 this.formData.password = data.password;
             }
@@ -43,7 +49,7 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit() {
-        this.authService.registerUser(this.formData);
+        this.store.dispatch(new AuthActions.TryRegister(this.formData));
     }
 
 }

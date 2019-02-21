@@ -1,0 +1,13 @@
+.git
+.idea
+vendor
+dist
+node_modules
+storage
+tests
+release
+.dockerignore
+public/css
+public/mix-manifest.json
+public/js
+public/packages

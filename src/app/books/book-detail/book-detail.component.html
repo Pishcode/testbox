@@ -1,6 +1,6 @@
 <mat-card class="book-detail" *ngIf="book$ | async as book">
   <mat-card-title>
-    {{(book$ | async)?.title}}
+    {{book.title}}
   </mat-card-title>
   <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
   <mat-card-content>
@@ -10,8 +10,10 @@
     <div class="book-info">
       Country: {{book.country}} <br/>
       Language: {{book.language}} <br/>
-      Published: {{book.year}} <br/>
+      Published: {{book.published}} <br/>
+      Pages: {{book.pages}} <br/>
     </div>
+    <h3>Price: {{book.price | money}}</h3>
     <mat-divider></mat-divider>
     <p>
       {{book.description}}
@@ -36,7 +38,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button routerLink="/books">
+    <button mat-button routerLink="/books">
       <mat-icon>chevron_left</mat-icon>
     </button>
     <a mat-raised-button color="primary" [href]="book.link" target="_blank">Go to</a>

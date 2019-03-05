@@ -19,19 +19,18 @@ export class BookService {
         this.books = firestore.collection('books').valueChanges();
     }
 
-    getBooks() {
-        return this.booksCollection.snapshotChanges().pipe(
+    getBooks(orderBy = 'title') {
+        return this.firestore.collection('books', ref => ref.orderBy(orderBy)).snapshotChanges().pipe(
             filter(x => !!x),
             map(
-                actions => {
-                    return actions.map(
-                        a => {
-                            const data = a.payload.doc.data() as Book;
-                            const id = a.payload.doc.id;
-                            return {id, ...data};
-                        }
-                    );
-                }
+                documents => documents.map(
+                    book => {
+                        return {
+                            id: book.payload.doc.id,
+                            ...book.payload.doc.data()
+                        };
+                    }
+                )
             )
         );
     }
@@ -41,7 +40,7 @@ export class BookService {
     }
 
     addBook(book: Book) {
-        this.booksCollection.add(book);
+        return this.booksCollection.add(book);
     }
 
     updateBook(id: string, book: Book) {

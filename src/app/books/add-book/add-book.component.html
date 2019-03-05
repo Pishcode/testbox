@@ -60,6 +60,22 @@
                 formControlName="description" rows="5"></textarea>
       </mat-form-field>
 
+      <mat-form-field class="field-full">
+        <input
+                matInput
+                placeholder="Pages"
+                name="pages"
+                formControlName="pages">
+      </mat-form-field>
+
+      <mat-form-field class="field-full">
+        <input
+                matInput
+                placeholder="Price"
+                name="price"
+                formControlName="price">
+      </mat-form-field>
+
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Add book</button>
     </form>
   </mat-card-content>

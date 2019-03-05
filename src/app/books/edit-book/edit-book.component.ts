@@ -23,11 +23,8 @@ export class EditBookComponent implements OnInit {
     formData: Book = <Book>{
         author: '',
         country: '',
-        description: '',
-        image: '',
         language: '',
         title: '',
-        published: 0,
     };
 
     constructor(
@@ -47,15 +44,7 @@ export class EditBookComponent implements OnInit {
         this.book$.pipe(
             filter(x => !!x),
             tap((book: Book) => {
-                this.form.setValue({
-                    author: book.author,
-                    country: book.country,
-                    description: book.description,
-                    image: book.image,
-                    language: book.language,
-                    title: book.title,
-                    published: book.published
-                });
+                this.form.patchValue(book);
             })
         ).subscribe();
 
@@ -66,7 +55,9 @@ export class EditBookComponent implements OnInit {
             'image': [this.formData.image],
             'language': [this.formData.language],
             'title': [this.formData.title, Validators.required],
-            'published': [this.formData.published]
+            'published': [this.formData.published],
+            'pages': [this.formData.pages],
+            'price': [this.formData.price],
         });
 
 
@@ -79,6 +70,8 @@ export class EditBookComponent implements OnInit {
                 this.formData.language = data.language;
                 this.formData.title = data.title;
                 this.formData.published = data.published;
+                this.formData.pages = data.pages;
+                this.formData.price = data.price;
             }
         );
     }

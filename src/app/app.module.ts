@@ -9,10 +9,11 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { BooksComponent } from './books/books.component';
 import {
+    MatBadgeModule,
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
-    MatFormFieldModule,
+    MatFormFieldModule, MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
@@ -40,6 +41,9 @@ import { ReviewFormComponent } from './review/review-form/review-form.component'
 import { ReviewService } from './shared/services/review.service';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './shared/store/auth/auth.effects';
+import { CartComponent } from './cart/cart.component';
+import { ShortenPipe } from './shared/pipes/shorten.pipe';
+import { MoneyPipe } from './shared/pipes/money.pipe';
 
 @NgModule({
     declarations: [
@@ -53,7 +57,10 @@ import { AuthEffects } from './shared/store/auth/auth.effects';
         BookDetailComponent,
         AddBookComponent,
         EditBookComponent,
-        ReviewFormComponent
+        ReviewFormComponent,
+        ShortenPipe,
+        MoneyPipe,
+        CartComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -71,7 +78,9 @@ import { AuthEffects } from './shared/store/auth/auth.effects';
         MatIconModule,
         MatInputModule,
         MatButtonModule,
+        MatBadgeModule,
         MatCardModule,
+        MatGridListModule,
         MatFormFieldModule,
         MatExpansionModule,
         MatListModule

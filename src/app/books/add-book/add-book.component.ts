@@ -6,6 +6,8 @@ import {
 } from '@angular/forms';
 import { Book } from '../../shared/models/book.model';
 import { BookService } from '../../shared/services/book.service';
+import { collectExternalReferences } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-add-book',
@@ -18,8 +20,6 @@ export class AddBookComponent implements OnInit {
     formData: Book = <Book>{
         author: '',
         country: '',
-        description: '',
-        image: '',
         language: '',
         title: '',
         published: 0,
@@ -27,10 +27,12 @@ export class AddBookComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
+        private router: Router,
         private bookService: BookService
     ) { }
 
     ngOnInit() {
+
         this.form = this.fb.group({
             'author': [this.formData.author, Validators.required],
             'country': [this.formData.country],
@@ -38,7 +40,9 @@ export class AddBookComponent implements OnInit {
             'image': [this.formData.image],
             'language': [this.formData.language],
             'title': [this.formData.title, Validators.required],
-            'published': [this.formData.published]
+            'published': [this.formData.published],
+            'pages': [this.formData.pages],
+            'price': [this.formData.price],
         });
 
 
@@ -51,12 +55,18 @@ export class AddBookComponent implements OnInit {
                 this.formData.language = data.language;
                 this.formData.title = data.title;
                 this.formData.published = data.published;
+                this.formData.pages = data.pages;
+                this.formData.price = data.price;
             }
         );
     }
 
 
     onSubmit() {
-        this.bookService.addBook(this.formData);
+        this.bookService.addBook(this.formData).then( ref => {
+            if (ref.id) {
+                this.router.navigate(['/book', ref.id]);
+            }
+        });
     }
 }

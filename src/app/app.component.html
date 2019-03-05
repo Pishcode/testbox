@@ -22,6 +22,9 @@
                 <nav>
                     <a routerLink="/books">Books</a>
                 </nav>
+                <nav>
+                    <a routerLink="/cart" aria-label="cart"><mat-icon matBadge="{{cartItemsCount | async}}" matBadgeColor="warn">shopping_cart</mat-icon></a>
+                </nav>
             </mat-toolbar-row>
         </mat-toolbar>
         <div id="main" class="container">

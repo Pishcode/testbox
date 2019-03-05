@@ -8,6 +8,7 @@ import { AuthGuardService } from './shared/services/auth.guard.service';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { AddBookComponent } from './books/add-book/add-book.component';
 import { EditBookComponent } from './books/edit-book/edit-book.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'book/:id', component: BookDetailComponent},
     {path: 'book/edit/:id', component: EditBookComponent, canActivate: [AuthGuardService]},
     {path: 'login', component: LoginComponent},
+    {path: 'cart', component: CartComponent},
     {path: 'register', component: RegisterComponent}
 ];
 

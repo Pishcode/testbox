@@ -1,20 +1,36 @@
-<h2>Top 100 books</h2>
+<h2>Books</h2>
 
-<mat-expansion-panel *ngFor="let book of booksCollection | async; index as i">
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            {{book.title}}
-        </mat-panel-title>
-        <mat-panel-description>
-            {{book.author}}
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <b>{{book.published}}</b>
-    <div>{{book.country}}</div>
+<div class="book-list">
+    <div class="book" *ngFor="let book of booksCollection | async">
+        <mat-card>
+            <mat-card-title>
+                <a href="" [routerLink]="['/book', book.id]">
+                    {{book.title}}
+                </a>
+            </mat-card-title>
 
-    <p>{{book.description}}</p>
-    <mat-action-row>
-        <button mat-button color="primary" [routerLink]="['/book', book.id]">Book detail</button>
-        <button mat-stroked-button [routerLink]="['/book/edit', book.id]">Edit Book</button>
-    </mat-action-row>
-</mat-expansion-panel>
+            <mat-card-subtitle>
+                {{book.author}}
+            </mat-card-subtitle>
+
+            <mat-card-content>
+                <div class="image">
+                    <a href="" [routerLink]="['/book', book.id]">
+                        <img src="{{book.image}}" alt="{{book.title}}">
+                    </a>
+                </div>
+
+                <p class="description">{{book.description | shorten:200}}</p>
+
+                <h3>Price: {{book.price | money}}</h3>
+            </mat-card-content>
+
+            <mat-card-actions align="end">
+                <button mat-button *ngIf="isAuthenticated | async" [routerLink]="['/book/edit', book.id]">
+                    <mat-icon>edit</mat-icon> Edit
+                </button>
+                <button mat-flat-button color="warn" *ngIf="book.price" (click)="addToCart(book.id, book.price)">Add to Cart</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -17,7 +17,7 @@ import {
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatSidenavModule,
+    MatSidenavModule, MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -83,6 +83,7 @@ import { MoneyPipe } from './shared/pipes/money.pipe';
         MatGridListModule,
         MatFormFieldModule,
         MatExpansionModule,
+        MatTableModule,
         MatListModule
     ],
     providers: [

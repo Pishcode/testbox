@@ -13,6 +13,15 @@ export function cartReducer(state = initialState, action: CartActions.CartAction
 
     switch (action.type) {
         case(CartActions.ADD_ITEM):
+            if (state.cartItems.findIndex(item => item.id === action.payload.id) !== -1) {
+                return {
+                    ...state,
+                    cartItems: state.cartItems.map(x => {
+                        return x.id === action.payload.id ? {...x, count: x.count + 1 } : x;
+                    })
+                };
+            }
+
             return {
                 ...state,
                 cartItems: [...state.cartItems, action.payload]
@@ -21,7 +30,7 @@ export function cartReducer(state = initialState, action: CartActions.CartAction
             return {
                 ...state,
                 cartItems: state.cartItems.filter(
-                    (el) => el.id !== action.payload
+                    (item) => item.id !== action.payload
                 )
             };
     }

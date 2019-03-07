@@ -69,9 +69,9 @@ export class EditBookComponent implements OnInit {
                 this.formData.image = data.image;
                 this.formData.language = data.language;
                 this.formData.title = data.title;
-                this.formData.published = data.published;
-                this.formData.pages = data.pages;
-                this.formData.price = data.price;
+                this.formData.published = parseInt(data.published, 0);
+                this.formData.pages = parseInt(data.pages, 0);
+                this.formData.price = parseFloat(data.price);
             }
         );
     }

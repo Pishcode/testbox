@@ -45,6 +45,7 @@ export class BookService {
 
     updateBook(id: string, book: Book) {
         this.bookDoc = this.firestore.doc<Book>(`books/${id}`);
+        console.log(book);
         this.bookDoc.update(book);
     }
 }

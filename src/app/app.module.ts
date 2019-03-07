@@ -13,11 +13,13 @@ import {
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
-    MatFormFieldModule, MatGridListModule,
+    MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatSidenavModule, MatTableModule,
+    MatSidenavModule,
+    MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,7 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AuthGuardService } from './shared/services/auth.guard.service';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './shared/store/app.reducer';
+import { reducers, metaReducers } from './shared/store/app.reducer';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { BookService } from './shared/services/book.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -64,7 +66,7 @@ import { MoneyPipe } from './shared/pipes/money.pipe';
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
-        StoreModule.forRoot(reducers),
+        StoreModule.forRoot(reducers, {metaReducers}),
         EffectsModule.forRoot([AuthEffects]),
         BrowserModule,
         AppRoutingModule,

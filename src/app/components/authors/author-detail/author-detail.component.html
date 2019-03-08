@@ -1,0 +1,22 @@
+<mat-card class="book-detail" *ngIf="author$ | async as author">
+  <mat-card-title>
+    {{author.name}}
+  </mat-card-title>
+  <mat-card-subtitle>
+    Born in {{author.placeOfBirth}}, {{author.dateOfBirth}}
+  </mat-card-subtitle>
+  <mat-card-content>
+    <div class="author-cover">
+      <img [src]="author.image" [alt]="author.title">
+    </div>
+    <p>
+      {{author.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button routerLink="/authors">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <a mat-raised-button color="primary" [href]="author.website" target="_blank">Go to</a>
+  </mat-card-actions>
+</mat-card>

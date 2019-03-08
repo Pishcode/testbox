@@ -1,0 +1,12 @@
+<h2>Authors</h2>
+
+<mat-list class="authors">
+  <mat-list-item *ngFor="let author of authorsCollection | async">
+    <a href="" [routerLink]="['/author', author.id]" class="author">
+      <img src="{{author.image}}" alt="{{author.name}}">
+      <span>
+        {{author.name}}
+      </span>
+    </a>
+  </mat-list-item>
+</mat-list>

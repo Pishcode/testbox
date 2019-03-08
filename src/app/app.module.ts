@@ -9,9 +9,11 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { BooksComponent } from './books/books.component';
 import {
+    MatAutocompleteModule,
     MatBadgeModule,
     MatButtonModule,
     MatCardModule,
+    MatDatepickerModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -22,12 +24,13 @@ import {
     MatTableModule,
     MatToolbarModule
 } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './components/user/user.component';
 import { AuthService } from './shared/services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -46,6 +49,10 @@ import { AuthEffects } from './shared/store/auth/auth.effects';
 import { CartComponent } from './cart/cart.component';
 import { ShortenPipe } from './shared/pipes/shorten.pipe';
 import { MoneyPipe } from './shared/pipes/money.pipe';
+import { AuthorsComponent } from './components/authors/authors.component';
+import { AddAuthorComponent } from './components/authors/add-author/add-author.component';
+import { AuthorDetailComponent } from './components/authors/author-detail/author-detail.component';
+import { EditAuthorComponent } from './components/authors/edit-author/edit-author.component';
 
 @NgModule({
     declarations: [
@@ -62,7 +69,11 @@ import { MoneyPipe } from './shared/pipes/money.pipe';
         ReviewFormComponent,
         ShortenPipe,
         MoneyPipe,
-        CartComponent
+        CartComponent,
+        AuthorsComponent,
+        AddAuthorComponent,
+        AuthorDetailComponent,
+        EditAuthorComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -85,6 +96,9 @@ import { MoneyPipe } from './shared/pipes/money.pipe';
         MatGridListModule,
         MatFormFieldModule,
         MatExpansionModule,
+        MatDatepickerModule,
+        MatMomentDateModule,
+        MatAutocompleteModule,
         MatTableModule,
         MatListModule
     ],

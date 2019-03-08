@@ -4,10 +4,10 @@ import {
     FormGroup,
     Validators
 } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { Book } from '../../shared/models/book.model';
 import { BookService } from '../../shared/services/book.service';
-import { collectExternalReferences } from '@angular/compiler';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-add-book',
@@ -60,7 +60,6 @@ export class AddBookComponent implements OnInit {
             }
         );
     }
-
 
     onSubmit() {
         this.bookService.addBook(this.formData).then( ref => {

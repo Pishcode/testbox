@@ -1,4 +1,4 @@
-export const DERAULT_APP_FORMAT = {
+export const DEFAULT_APP_FORMAT = {
     parse: {
         dateInput: 'LL',
     },

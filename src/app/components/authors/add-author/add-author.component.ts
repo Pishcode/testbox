@@ -6,7 +6,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import { Author } from '../../../shared/models/author.model';
 import { AuthorService } from '../../../shared/services/author.service';
-import { DERAULT_APP_FORMAT } from '../../../shared/date.formats';
+import { DEFAULT_APP_FORMAT } from '../../../shared/date.formats';
 
 @Component({
   selector: 'app-add-author',
@@ -14,7 +14,7 @@ import { DERAULT_APP_FORMAT } from '../../../shared/date.formats';
   styleUrls: ['./add-author.component.sass'],
   providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: DERAULT_APP_FORMAT},
+    {provide: MAT_DATE_FORMATS, useValue: DEFAULT_APP_FORMAT},
   ],
 })
 export class AddAuthorComponent implements OnInit {

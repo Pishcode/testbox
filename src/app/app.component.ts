@@ -30,8 +30,8 @@ export class AppComponent implements OnInit {
                 if (!cartState.cartItems.length) {
                   return 0;
                 }
-                const arrayCount = cartState.cartItems.map(x => x.count);
-                return arrayCount.reduce((accumulator, item) => accumulator + item);
+
+                return cartState.cartItems.reduce((accumulator, item) => accumulator + item.count, 0);
             })
         );
     }

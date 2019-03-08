@@ -5,7 +5,7 @@ import {
     RouterStateSnapshot
 } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, take } from 'rxjs/operators';
+import { map, skipWhile, take } from 'rxjs/operators';
 
 import * as fromAuth from '../store/auth/auth.reducer';
 import * as fromApp from '../store/app.reducer';
@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
 
 @Injectable()
 export class AuthGuardService {
-    authenticated$: Subscription;
 
     constructor(
         private router: Router,
@@ -22,7 +21,7 @@ export class AuthGuardService {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         return this.store.select('auth').pipe(
-            take(1),
+            skipWhile(authState => !authState || authState.authenticated === null),
             map((authState: fromAuth.State) => {
                 if (authState.authenticated) {
                     return true;
@@ -30,13 +29,8 @@ export class AuthGuardService {
 
                 this.router.navigate(['/login']);
                 return false;
-            })
+            }),
+            take(1)
         );
-    }
-
-    onDestroy() {
-        if (this.authenticated$) {
-            this.authenticated$.unsubscribe();
-        }
     }
 }

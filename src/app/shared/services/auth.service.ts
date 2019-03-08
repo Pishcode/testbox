@@ -9,7 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 import * as fromApp from '../store/auth/auth.reducer';
 import * as AuthActions from '../store/auth/auth.actions';
-import { User, UserLoginData } from '../models/user.model';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -32,9 +32,11 @@ export class AuthService {
                     if (user) {
                         this.store.dispatch(new AuthActions.Login());
                         this.userId = user.uid;
+                        this.storeToken();
                         return this.getUser(user.uid);
                     }
 
+                    this.store.dispatch(new AuthActions.Logout());
                     return of(null);
                 }
             )
@@ -52,11 +54,8 @@ export class AuthService {
             }
         );
     }
+
     logout() {
-        this.firebaseAuth.auth.signOut().then(
-            res => {
-                this.store.dispatch(new AuthActions.Logout());
-            }
-        );
+        this.store.dispatch(new AuthActions.TryLogout());
     }
 }

@@ -5,6 +5,7 @@ export const TRY_REGISTER = 'DO_REGISTER';
 export const REGISTER = 'REGISTER';
 export const TRY_LOGIN = 'DO_LOGIN';
 export const LOGIN = 'LOGIN';
+export const TRY_LOGOUT = 'DO_LOGOUT';
 export const LOGOUT = 'LOGOUT';
 export const SET_TOKEN = 'SET_TOKEN';
 
@@ -17,6 +18,10 @@ export class TryLogin implements Action {
     readonly type = TRY_LOGIN;
 
     constructor(public payload: UserLoginData) {}
+}
+
+export class TryLogout implements Action {
+    readonly type = TRY_LOGOUT;
 }
 
 export class Register implements Action {
@@ -37,4 +42,4 @@ export class SetToken implements Action {
     constructor(public payload: { token: string }) { }
 }
 
-export type AuthActions = Register | Login | Logout | SetToken | TryRegister | TryLogin;
+export type AuthActions = Register | Login | Logout | SetToken | TryRegister | TryLogin | TryLogout;

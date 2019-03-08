@@ -73,6 +73,25 @@ export class AuthEffects {
         })
     );
 
+    @Effect()
+    authLogout = this.actions$.pipe(
+        ofType(AuthActions.TRY_LOGOUT),
+        switchMap((authData: UserLoginData) => {
+            return fromPromise(
+                firebase.auth().signOut()
+            );
+        }),
+        switchMap(() => {
+            this.router.navigate(['/']);
+
+            return [
+                {
+                    type: AuthActions.LOGOUT
+                }
+            ];
+        })
+    );
+
     constructor(
         private actions$: Actions,
         private router: Router,

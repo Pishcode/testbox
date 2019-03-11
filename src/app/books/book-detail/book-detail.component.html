@@ -2,7 +2,12 @@
   <mat-card-title>
     {{book.title}}
   </mat-card-title>
-  <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+  <mat-card-subtitle>
+    <a href="" [routerLink]="['/author', book.author]" *ngIf="book.authorRef | async as author; else unknownAuthor">
+      {{author.name}}
+    </a>
+    <ng-template #unknownAuthor>{{book.author}}</ng-template>
+  </mat-card-subtitle>
   <mat-card-content>
     <div class="book-cover">
       <img [src]="book.image" [alt]="book.title">

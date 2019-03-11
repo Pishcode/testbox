@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Book } from '../models/book.model';
 import { filter, map } from 'rxjs/internal/operators';
 import { Observable } from 'rxjs';
+import { AuthorService } from './author.service';
 
 @Injectable()
 export class BookService {
@@ -13,7 +14,8 @@ export class BookService {
 
     constructor(
         private db: AngularFireDatabase,
-        private firestore: AngularFirestore
+        private firestore: AngularFirestore,
+        private authorService: AuthorService
     ) {
         this.booksCollection = firestore.collection('books');
         this.books = firestore.collection('books').valueChanges();
@@ -27,6 +29,7 @@ export class BookService {
                     book => {
                         return {
                             id: book.payload.doc.id,
+                            authorRef: this.authorService.getAuthor(book.payload.doc.data().author),
                             ...book.payload.doc.data()
                         };
                     }
@@ -36,7 +39,14 @@ export class BookService {
     }
 
     getBook(id: string) {
-        return this.firestore.doc<Book>(`books/${id}`).valueChanges();
+        return this.firestore.doc<Book>(`books/${id}`).valueChanges().pipe(
+            map( book => {
+                return {
+                    authorRef: this.authorService.getAuthor(book.author),
+                    ...book
+                };
+            })
+        );
     }
 
     addBook(book: Book) {

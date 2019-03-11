@@ -3,7 +3,7 @@
     {{author.name}}
   </mat-card-title>
   <mat-card-subtitle>
-    Born in {{author.placeOfBirth}}, {{author.dateOfBirth}}
+    Born in {{author.placeOfBirth}}, {{author.dateOfBirth | date:'MMM dd, yyyy'}}
   </mat-card-subtitle>
   <mat-card-content>
     <div class="author-cover">

@@ -10,32 +10,32 @@ import { map } from 'rxjs/operators';
 import * as fromAuth from '../../../shared/store/auth/auth.reducer';
 
 @Component({
-  selector: 'app-author-detail',
-  templateUrl: './author-detail.component.html',
-  styleUrls: ['./author-detail.component.sass']
+    selector: 'app-author-detail',
+    templateUrl: './author-detail.component.html',
+    styleUrls: ['./author-detail.component.sass']
 })
 export class AuthorDetailComponent implements OnInit {
-  authorId: string;
-  author$: Observable<Author>;
-  isAuthenticated$: Observable<boolean>;
+    authorId: string;
+    author$: Observable<Author>;
+    isAuthenticated$: Observable<boolean>;
 
-  constructor(
-      private authorService: AuthorService,
-      private store: Store<fromApp.AppState>,
-      private route: ActivatedRoute
-      ) { }
+    constructor(
+        private authorService: AuthorService,
+        private store: Store<fromApp.AppState>,
+        private route: ActivatedRoute
+    ) {
+    }
 
-  ngOnInit() {
-    this.route.params.subscribe(
-        (params: Params) => {
-          this.authorId = params['id'];
-          this.author$ = this.authorService.getAuthor(this.authorId);
-        }
-    );
+    ngOnInit() {
+        this.route.params.subscribe(
+            (params: Params) => {
+                this.authorId = params['id'];
+                this.author$ = this.authorService.getAuthor(this.authorId);
+            }
+        );
 
-    this.isAuthenticated$ = this.store.select('auth').pipe(
-        map((authState: fromAuth.State) => authState.authenticated)
-    );
-  }
-
+        this.isAuthenticated$ = this.store.select('auth').pipe(
+            map((authState: fromAuth.State) => authState.authenticated)
+        );
+    }
 }

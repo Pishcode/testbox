@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Book } from '../models/book.model';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { filter, map } from 'rxjs/operators';
+
 import { Author } from '../models/author.model';
 
 @Injectable({
@@ -48,6 +48,6 @@ export class AuthorService {
 
   updateAuthor(id: string, author: Author) {
     this.authorDoc = this.firestore.doc<Author>(`authors/${id}`);
-    this.authorDoc.update(author);
+    return this.authorDoc.update(author);
   }
 }

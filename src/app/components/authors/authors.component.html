@@ -8,5 +8,9 @@
         {{author.name}}
       </span>
     </a>
+
+    <button mat-button *ngIf="isAuthenticated | async" [routerLink]="['/author/edit', author.id]">
+      <mat-icon>edit</mat-icon> Edit
+    </button>
   </mat-list-item>
 </mat-list>

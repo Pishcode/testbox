@@ -5,12 +5,12 @@ import {
     Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Book } from '../../shared/models/book.model';
 import { BookService } from '../../shared/services/book.service';
 import { AuthorService } from '../../shared/services/author.service';
-import { Observable, Subscription } from 'rxjs';
-import { map, startWith, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-add-book',
@@ -92,7 +92,6 @@ export class AddBookComponent implements OnInit, OnDestroy {
     }
 
     filterAuthors(value: string) {
-        console.log(value);
         const filterValue = value.toLowerCase();
 
         return this.authors.filter(author => author.name.toLowerCase().indexOf(filterValue) === 0);

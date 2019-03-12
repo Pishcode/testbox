@@ -12,6 +12,7 @@ import { CartComponent } from './cart/cart.component';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { AddAuthorComponent } from './components/authors/add-author/add-author.component';
 import { AuthorDetailComponent } from './components/authors/author-detail/author-detail.component';
+import { EditAuthorComponent } from './components/authors/edit-author/edit-author.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
     {path: 'authors', component: AuthorsComponent},
     {path: 'authors/add', component: AddAuthorComponent, canActivate: [AuthGuardService]},
     {path: 'author/:id', component: AuthorDetailComponent},
+    {path: 'author/edit/:id', component: EditAuthorComponent, canActivate: [AuthGuardService]},
     {path: 'login', component: LoginComponent},
     {path: 'cart', component: CartComponent},
     {path: 'register', component: RegisterComponent}

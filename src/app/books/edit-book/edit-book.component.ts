@@ -1,16 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
-    FormBuilder, FormControl,
+    FormBuilder,
+    FormControl,
     FormGroup,
     Validators
 } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { filter, map, tap } from 'rxjs/internal/operators';
+
 import { Book } from '../../shared/models/book.model';
 import { BookService } from '../../shared/services/book.service';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { filter, map, startWith, tap } from 'rxjs/internal/operators';
 import { AuthorService } from '../../shared/services/author.service';
-import { Author } from '../../shared/models/author.model';
 
 @Component({
     selector: 'app-edit-book',
@@ -34,6 +35,7 @@ export class EditBookComponent implements OnInit, OnDestroy {
 
     constructor(
         private fb: FormBuilder,
+        private router: Router,
         private bookService: BookService,
         private authorService: AuthorService,
         private route: ActivatedRoute
@@ -93,9 +95,10 @@ export class EditBookComponent implements OnInit, OnDestroy {
                 if (data.author) {
                     if (data.author.hasOwnProperty('id')) {
                         this.formData.author = data.author.id;
-                    }
-                    if (data.author.hasOwnProperty('name')) {
+                    } else if (data.author.hasOwnProperty('name')) {
                         this.formData.author = data.author.name;
+                    } else {
+                        this.formData.author = data.author;
                     }
                 }
                 this.formData.country = data.country;
@@ -112,7 +115,9 @@ export class EditBookComponent implements OnInit, OnDestroy {
 
 
     onSubmit() {
-        this.bookService.updateBook(this.bookId, this.formData);
+        this.bookService.updateBook(this.bookId, this.formData).then( () => {
+            this.router.navigate(['/book', this.bookId]);
+        });
     }
 
     filterAuthors(value: string) {

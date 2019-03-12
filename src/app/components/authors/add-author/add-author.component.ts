@@ -19,7 +19,6 @@ import { DEFAULT_APP_FORMAT } from '../../../shared/date.formats';
 })
 export class AddAuthorComponent implements OnInit {
 
-
     form: FormGroup;
     formData: Author = <Author>{
         name: '',

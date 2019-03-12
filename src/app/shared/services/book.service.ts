@@ -27,10 +27,11 @@ export class BookService {
             map(
                 documents => documents.map(
                     book => {
+                        const bookData = book.payload.doc.data() as Book;
                         return {
                             id: book.payload.doc.id,
-                            authorRef: this.authorService.getAuthor(book.payload.doc.data().author),
-                            ...book.payload.doc.data()
+                            authorRef: this.authorService.getAuthor(bookData.author),
+                            ...bookData
                         };
                     }
                 )

@@ -1,87 +1,88 @@
 <mat-card class="form">
-  <mat-card-title>Add new book</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <mat-form-field class="field-full">
-        <input
-                matInput
-                placeholder="Title"
-                name="title"
-                formControlName="title"
-                required>
-      </mat-form-field>
+    <mat-card-title>Add new book</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <mat-form-field class="field-full">
+                <input
+                        matInput
+                        placeholder="Title"
+                        name="title"
+                        formControlName="title"
+                        required>
+            </mat-form-field>
 
-      <mat-form-field class="field-full">
-        <input
-                matInput
-                placeholder="Author"
-                name="author"
-                [matAutocomplete]="auto"
-                [formControl]="authorControl">
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="showName">
-          <mat-option *ngFor="let author of filteredAuthors$ | async" [value]="author">
-            <span>{{author.name}}</span>
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+            <mat-form-field class="field-full">
+                <input
+                        matInput
+                        placeholder="Author"
+                        name="author"
+                        [matAutocomplete]="auto"
+                        [formControl]="authorControl"
+                        required>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="showName">
+                    <mat-option *ngFor="let author of filteredAuthors$ | async" [value]="author">
+                        <span>{{author.name}}</span>
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
 
-      <mat-form-field class="field-full">
-        <input
-                matInput
-                placeholder="Country"
-                name="country"
-                formControlName="country">
-      </mat-form-field>
+            <mat-form-field class="field-full">
+                <input
+                        matInput
+                        placeholder="Country"
+                        name="country"
+                        formControlName="country">
+            </mat-form-field>
 
-      <mat-form-field class="field-full">
-        <input
-                matInput
-                placeholder="Language"
-                name="language"
-                formControlName="language">
-      </mat-form-field>
+            <mat-form-field class="field-full">
+                <input
+                        matInput
+                        placeholder="Language"
+                        name="language"
+                        formControlName="language">
+            </mat-form-field>
 
-      <mat-form-field class="field-full">
-        <input
-                matInput
-                placeholder="Image Url"
-                name="image"
-                formControlName="image">
-      </mat-form-field>
+            <mat-form-field class="field-full">
+                <input
+                        matInput
+                        placeholder="Image Url"
+                        name="image"
+                        formControlName="image">
+            </mat-form-field>
 
-      <mat-form-field class="field-full">
-        <input
-                matInput
-                placeholder="Year published"
-                name="published"
-                formControlName="published">
-      </mat-form-field>
+            <mat-form-field class="field-full">
+                <input
+                        matInput
+                        placeholder="Year published"
+                        name="published"
+                        formControlName="published">
+            </mat-form-field>
 
-      <mat-form-field class="field-full">
+            <mat-form-field class="field-full">
         <textarea
                 matInput
                 placeholder="Description"
                 name="description"
                 formControlName="description" rows="5"></textarea>
-      </mat-form-field>
+            </mat-form-field>
 
-      <mat-form-field class="field-full">
-        <input
-                matInput
-                placeholder="Pages"
-                name="pages"
-                formControlName="pages">
-      </mat-form-field>
+            <mat-form-field class="field-full">
+                <input
+                        matInput
+                        placeholder="Pages"
+                        name="pages"
+                        formControlName="pages">
+            </mat-form-field>
 
-      <mat-form-field class="field-full">
-        <input
-                matInput
-                placeholder="Price"
-                name="price"
-                formControlName="price">
-      </mat-form-field>
+            <mat-form-field class="field-full">
+                <input
+                        matInput
+                        placeholder="Price"
+                        name="price"
+                        formControlName="price">
+            </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Add book</button>
-    </form>
-  </mat-card-content>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Add book</button>
+        </form>
+    </mat-card-content>
 </mat-card>

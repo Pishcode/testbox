@@ -43,10 +43,12 @@ export class AddBookComponent implements OnInit, OnDestroy {
             this.authors = authors;
 
             this.filteredAuthors$ = this.authorControl.valueChanges.pipe(
-                startWith({name: ''}),
                 map(value => {
-                    console.log(value);
-                    return this.filterAuthors(value.name);
+                    if (value. name) {
+                        return this.filterAuthors(value.name);
+                    }
+
+                    return this.filterAuthors(value);
                 })
             );
 
@@ -90,6 +92,7 @@ export class AddBookComponent implements OnInit, OnDestroy {
     }
 
     filterAuthors(value: string) {
+        console.log(value);
         const filterValue = value.toLowerCase();
 
         return this.authors.filter(author => author.name.toLowerCase().indexOf(filterValue) === 0);

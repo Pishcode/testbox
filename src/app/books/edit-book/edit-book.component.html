@@ -16,8 +16,14 @@
                 matInput
                 placeholder="Author"
                 name="author"
-                formControlName="author"
+                [matAutocomplete]="auto"
+                [formControl]="authorControl"
                 required>
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="showName">
+          <mat-option *ngFor="let author of filteredAuthors$ | async" [value]="author">
+            <span>{{author.name}}</span>
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
 
       <mat-form-field class="field-full">
